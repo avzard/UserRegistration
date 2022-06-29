@@ -6,13 +6,14 @@ namespace UserRegistration
     class Program
     {
         public static string REGEX_PATTERN = "^[A-Z]{1}[a-zA-Z]{2,}";
-        public static string EMAIL_PATTERN = "^[a-zA-Z0-9]+[.(a-zA-Z0-9)]*(\\@)[a-zA-Z0-9]+(\\.)[a-z]{2,3}[.(a-z)]*$";
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome_To_UserRegistration_RegeEx");
             FirstNameVal();
             LastNameVal();
             EmailValidation();
+            MobileValidation();
+            PasswordRule();
         }
         public static void FirstNameVal()
         {
@@ -38,6 +39,7 @@ namespace UserRegistration
         }
         public static void EmailValidation()
         {
+            string EMAIL_PATTERN = "^[a-zA-Z0-9]+[.(a-zA-Z0-9)]*(\\@)[a-zA-Z0-9]+(\\.)[a-z]{2,3}[.(a-z)]*$";
             Regex rg = new Regex(EMAIL_PATTERN);
             Console.Write("Enter E-mail: ");
             string email = Console.ReadLine();
@@ -46,6 +48,30 @@ namespace UserRegistration
                 Console.WriteLine("Email is valid : " + email);
             else
                 Console.WriteLine("Invalid E-mail.");
+        }
+        public static void MobileValidation()
+        {
+            string MobilePattern = "^(91){1}[ ]+[0-9]{10}$";
+            Regex rg = new Regex(MobilePattern);
+            Console.Write("Enter Mobile_NO: ");
+            string mobile = Console.ReadLine();
+            bool validate = rg.IsMatch(mobile);
+            if (validate)
+                Console.WriteLine("Mobile is valid : " + mobile);
+            else
+                Console.WriteLine("Invalid Mobile..");
+        }
+        public static void PasswordRule()
+        {
+            string PasswordPattern = "^[a-zA-Z0-9]{8,}$";
+            Regex rg = new Regex(PasswordPattern);
+            Console.Write("Enter Password: ");
+            string password = Console.ReadLine();
+            bool validate = rg.IsMatch(password);
+            if (validate)
+                Console.WriteLine("Password is valid : " + password);
+            else
+                Console.WriteLine("Invalid password..");
         }
     }
 }
